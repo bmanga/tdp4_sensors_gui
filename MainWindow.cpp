@@ -54,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
     (*laser1Set) << 0;
     (*laser2Set) << 0;
     (*laser3Set) << 0;
+    (*ultrasoundSet) << 0;
     auto *barSeries = new QBarSeries();
     barSeries->append(laser1Set);
     barSeries->append(laser2Set);
@@ -184,4 +185,5 @@ void MainWindow::ClearAllCharts()
     laser1LineChart->clear();
     laser2LineChart->clear();
     laser3LineChart->clear();
+    ultrasoundLineChart->clear();
 }

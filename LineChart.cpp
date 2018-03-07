@@ -2,6 +2,7 @@
 
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
+#include <QDebug>
 
 LineChart::LineChart(QPen pen) : QtCharts::QChart(QChart::ChartTypeCartesian, nullptr, 0)
 {
@@ -26,10 +27,10 @@ LineChart::LineChart(QPen pen) : QtCharts::QChart(QChart::ChartTypeCartesian, nu
 QXYSeries &LineChart::operator<<(QPointF p)
 {
     axisX()->setTitleText(QString().sprintf("%.2f", p.y()));
-    auto prev_x = m_series->at(m_series->count()).x();
-    auto elapsed = p.x() - prev_x;
+    auto elapsed = p.x();
     if (elapsed > 10) {
-        m_series->removePoints(0, 1);
+        // We dont really want to remove the points, we'll store them in csv
+        // m_series->removePoints(0, 1);
         axisX()->setRange(elapsed - 10, elapsed);
     }
 
